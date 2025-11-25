@@ -1,0 +1,63 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Phone } from 'lucide-react'
+import { SiteSettings } from '@/lib/types'
+import { urlFor } from '@/sanity/image'
+
+interface HeaderProps {
+  settings: SiteSettings
+}
+
+export default function Header({ settings }: HeaderProps) {
+  return (
+    <header className="relative z-50">
+      <div className="container mx-auto px-6 py-6">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            {settings?.logo ? (
+              <Image
+                src={urlFor(settings.logo).width(150).url()}
+                alt={settings.siteName || 'SiteGuard99'}
+                width={150}
+                height={40}
+                className="h-8 w-auto"
+              />
+            ) : (
+              <span className="text-xl font-semibold">{settings?.siteName || 'SiteGuard99'}</span>
+            )}
+          </Link>
+
+          {/* Navigation Buttons */}
+          <div className="flex items-center gap-3">
+            {settings?.loginUrl && (
+              <Link
+                href={settings.loginUrl}
+                target="_blank"
+                className="btn-outline text-sm"
+              >
+                Login
+              </Link>
+            )}
+            <Link
+              href="#book"
+              className="btn-outline text-sm"
+            >
+              <Phone className="w-4 h-4" />
+              Book a call
+            </Link>
+            <Link
+              href="#pricing"
+              className="btn-primary text-sm"
+            >
+              See pricing
+            </Link>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}

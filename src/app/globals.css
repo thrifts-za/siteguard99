@@ -1,26 +1,288 @@
+@import "./designjoy.css";
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Increase font weight globally */
+body {
+  font-weight: 600;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+h1, h2, h3, h4, h5, h6,
+.heading,
+.heading-2,
+.heading-3,
+.heading-4,
+.heading-5 {
+  font-weight:550;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+p, .paragraph, .text-block {
+  font-weight: 500;
+}
+
+/* Services section labels and descriptions */
+.services__header {
+  font-weight: 600 !important;
+}
+
+.services__p {
+  font-weight: 500 !important;
+}
+
+/* How it works section */
+.hiw__header,
+.hiw__card-header {
+  font-weight: 700 !important;
+}
+
+.hiw__card-p,
+.hiw__p {
+  font-weight: 600 !important;
+}
+
+/* FAQ section */
+.faq__header {
+  font-weight: 700 !important;
+}
+
+.faq__question {
+  font-weight: 550 !important;
+}
+
+.faq__answer,
+.faq__p {
+  font-weight: 500 !important;
+}
+
+/* Pricing section */
+.pricing__header,
+.pricing__card-header {
+  font-weight: 700 !important;
+}
+
+.pricing__p,
+.pricing__card-p {
+  font-weight: 500 !important;
+}
+
+/* General text elements */
+.text-block,
+.div-block-text {
+  font-weight: 500 !important;
+}
+
+/* Footer smiley faces - enlarged */
+.footer-smiles {
+  width: 100% !important;
+  max-width: 500px !important;
+  height: auto !important;
+}
+
+.smiles-desktop {
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'SeriouslyNostalgic';
+  src: url('/images/678547ff1402d3c1cf407122_SeriouslyNostalgicFnIt-Reg.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Only essential overrides - let designjoy.css handle the rest */
+.text-italics {
+  font-family: 'SeriouslyNostalgic', Georgia, serif;
+  font-style: italic;
+}
+
+/* Lottie Animation Containers */
+.lottie-animation-4,
+.lottie-animation-5 {
+  width: 24px;
+  height: 24px;
+}
+
+/* Remove opacity:0 from animation targets */
+.hiw__card,
+.services__col,
+.faq__card,
+.pricing__card,
+.div-block-28,
+.async,
+.div-block-3,
+.hero__member-card-badge,
+.hero__member-card-header,
+.button.w-button,
+.hero__member-card-call,
+.hero__member-card-mockup,
+.image-3,
+.image-7,
+.stack,
+.hiw__header-wrapper,
+.slider-wrapper,
+.faq__card-inner,
+._44959,
+.book-a-call-wrapper,
+.image-10 {
+  opacity: 1 !important;
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-1-inner {
+  display: flex;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-1-inner._6886 {
+  animation-direction: reverse;
+}
+
+.marquee-inner {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+/* FAQ Row clickable */
+.faq__row {
+  cursor: pointer;
+}
+
+.faq__arrow {
+  transition: transform 0.3s ease;
+}
+
+/* Services row - show on desktop with scroll */
+@media (min-width: 992px) {
+  .services__list {
+    overflow: hidden;
+    position: relative;
+  }
+  .services__row {
+    display: flex !important;
+    flex-wrap: nowrap;
+    gap: 32px;
+    padding-bottom: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  .services__row::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .services__row .services__col {
+    flex: 0 0 auto;
+    width: 220px;
+  }
+  .slider-wrapper._33 {
+    display: none !important;
+  }
+  .services-arrows {
+    display: flex !important;
+    gap: 12px;
+    margin-top: 20px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Image-10 floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+/* Request card smile hover animation - zoom on hover */
+.hiw__card._2 .image-7 {
+  transition: transform 0.3s ease;
+}
+
+.hiw__card._2:hover .image-7 {
+  transform: scale(1.2);
+}
+
+.image-10 {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Hero member card mockup floating animation */
+.hero__member-card-mockup {
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* Receive card stack hover animation */
+.stack {
+  position: relative;
+}
+
+.front-design,
+.middle-design,
+.bottom-design {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hiw__card._3:hover .front-design {
+  transform: translateY(-8px) rotate(-2deg);
+}
+
+.hiw__card._3:hover .middle-design {
+  transform: translateY(-4px) rotate(1deg);
+}
+
+.hiw__card._3:hover .bottom-design {
+  transform: translateY(-2px);
+}
+
+/* Services scroll arrows */
+.services-arrows {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  z-index: 10;
+  padding-left: 40px;
+}
+
+.left-arrow-2,
+.right-arrow-2 {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.left-arrow-2:hover,
+.right-arrow-2:hover {
+  background: #f5f5f5;
+}
+
+.w-icon-slider-left::before,
+.w-icon-slider-right::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+
+.w-icon-slider-left::before {
+  transform: rotate(45deg);
+  margin-left: 4px;
+}
+
+.w-icon-slider-right::before {
+  transform: rotate(-135deg);
+  margin-right: 4px;
 }
