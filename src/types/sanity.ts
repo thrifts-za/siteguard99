@@ -9,19 +9,61 @@ export interface SanityImage {
   }
 }
 
+export interface SEOMetadata {
+  metaTitle?: string
+  metaDescription?: string
+  metaKeywords?: string[]
+  canonicalUrl?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImageUrl?: string
+  ogType?: 'website' | 'article' | 'product'
+  twitterCard?: 'summary' | 'summary_large_image'
+  twitterTitle?: string
+  twitterDescription?: string
+  twitterImageUrl?: string
+  twitterSite?: string
+  twitterCreator?: string
+  robotsNoIndex?: boolean
+  robotsNoFollow?: boolean
+}
+
 export interface SiteSettings {
   siteName: string
+  siteUrl?: string
   headerLogoUrl?: string
   footerLogoUrl?: string
-  seo?: {
-    metaTitle?: string
-    metaDescription?: string
-    ogImage?: SanityImage
-  }
+  seo?: SEOMetadata
+  // Favicons
+  faviconUrl?: string
+  faviconSvgUrl?: string
+  favicon16Url?: string
+  favicon32Url?: string
+  appleTouchIconUrl?: string
+  androidChrome192Url?: string
+  androidChrome512Url?: string
+  maskIconUrl?: string
+  maskIconColor?: string
+  msapplicationTileColor?: string
+  themeColor?: string
+  // Tracking
+  googleAnalyticsId?: string
+  googleTagManagerId?: string
+  facebookPixelId?: string
+  hotjarId?: string
+  clarityId?: string
+  customHeadScripts?: string
+  customBodyStartScripts?: string
+  customBodyEndScripts?: string
+  // Social Links
   socialLinks?: {
     twitter?: string
     linkedin?: string
     instagram?: string
+    facebook?: string
+    youtube?: string
+    tiktok?: string
+    github?: string
   }
   contactEmail: string
   loginUrl?: string

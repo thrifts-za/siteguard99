@@ -1,12 +1,75 @@
 import { groq } from 'next-sanity'
 
+// Fetch site settings with SEO, tracking, and favicons
+export const siteSettingsQuery = groq`*[_type == "siteSettings"][0] {
+  siteName,
+  siteUrl,
+  contactEmail,
+  "headerLogoUrl": headerLogo.asset->url,
+  "footerLogoUrl": footerLogo.asset->url,
+
+  // SEO
+  seo {
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+    canonicalUrl,
+    ogTitle,
+    ogDescription,
+    "ogImageUrl": ogImage.asset->url,
+    ogType,
+    twitterCard,
+    twitterTitle,
+    twitterDescription,
+    "twitterImageUrl": twitterImage.asset->url,
+    twitterSite,
+    twitterCreator,
+    robotsNoIndex,
+    robotsNoFollow
+  },
+
+  // Favicons
+  "faviconUrl": favicon.asset->url,
+  "faviconSvgUrl": faviconSvg.asset->url,
+  "favicon16Url": favicon16.asset->url,
+  "favicon32Url": favicon32.asset->url,
+  "appleTouchIconUrl": appleTouchIcon.asset->url,
+  "androidChrome192Url": androidChrome192.asset->url,
+  "androidChrome512Url": androidChrome512.asset->url,
+  "maskIconUrl": maskIcon.asset->url,
+  maskIconColor,
+  msapplicationTileColor,
+  themeColor,
+
+  // Tracking
+  googleAnalyticsId,
+  googleTagManagerId,
+  facebookPixelId,
+  hotjarId,
+  clarityId,
+  customHeadScripts,
+  customBodyStartScripts,
+  customBodyEndScripts,
+
+  // Social & Integrations
+  socialLinks,
+  loginUrl,
+  stripePaymentUrl,
+  calendarBookingUrl
+}`
+
 // Fetch all page data in one query
 export const pageDataQuery = groq`{
   "siteSettings": *[_type == "siteSettings"][0] {
     siteName,
+    siteUrl,
     "headerLogoUrl": headerLogo.asset->url,
     "footerLogoUrl": footerLogo.asset->url,
-    seo,
+    seo {
+      metaTitle,
+      metaDescription,
+      "ogImageUrl": ogImage.asset->url
+    },
     socialLinks,
     contactEmail,
     loginUrl,
