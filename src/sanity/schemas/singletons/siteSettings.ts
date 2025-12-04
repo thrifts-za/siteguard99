@@ -22,21 +22,21 @@ export default defineType({
       title: 'Site Name',
       type: 'string',
       group: 'general',
-      initialValue: 'SiteGuard99',
+      initialValue: 'The WordPress Team',
     }),
     defineField({
       name: 'siteUrl',
       title: 'Site URL',
       type: 'url',
       group: 'general',
-      description: 'The canonical URL of your site (e.g., https://siteguard99.com)',
+      description: 'The canonical URL of your site (e.g., https://thewordpressteam.co.za)',
     }),
     defineField({
       name: 'contactEmail',
       title: 'Contact Email',
       type: 'string',
       group: 'general',
-      initialValue: 'hello@siteguard99.co',
+      initialValue: 'hello@thewordpressteam.co.za',
     }),
 
     // ========== BRANDING & LOGOS ==========
@@ -49,12 +49,42 @@ export default defineType({
       description: 'Logo for the header - should be dark/black for light background',
     }),
     defineField({
+      name: 'headerLogoColor',
+      title: 'Header Logo Color',
+      type: 'string',
+      group: 'branding',
+      options: {
+        list: [
+          { title: 'Red (Brand)', value: 'red' },
+          { title: 'Default', value: 'default' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'red',
+      description: 'Color scheme for the header logo text (when no custom logo is uploaded)',
+    }),
+    defineField({
       name: 'footerLogo',
       title: 'Footer Logo (Light/White)',
       type: 'image',
       group: 'branding',
       options: { hotspot: true },
       description: 'Logo for the footer - should be light/white for dark background',
+    }),
+    defineField({
+      name: 'footerLogoColor',
+      title: 'Footer Logo Color',
+      type: 'string',
+      group: 'branding',
+      options: {
+        list: [
+          { title: 'Red (Brand)', value: 'red' },
+          { title: 'Default (White)', value: 'default' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'default',
+      description: 'Color scheme for the footer logo text (when no custom logo is uploaded)',
     }),
 
     // ========== SEO ==========
@@ -234,16 +264,34 @@ export default defineType({
 
     // ========== INTEGRATIONS ==========
     defineField({
+      name: 'showLoginButton',
+      title: 'Show Login Button',
+      type: 'boolean',
+      group: 'integrations',
+      initialValue: false,
+      description: 'Toggle to show or hide the Login button in the header menu',
+    }),
+    defineField({
       name: 'loginUrl',
       title: 'Login URL',
       type: 'url',
       group: 'integrations',
+      description: 'URL for the Login button (e.g., Stripe billing portal)',
+      hidden: ({ parent }) => !parent?.showLoginButton,
+    }),
+    defineField({
+      name: 'pricingCtaUrl',
+      title: 'Pricing CTA URL',
+      type: 'url',
+      group: 'integrations',
+      description: 'URL for the "Get started" button in the pricing section (e.g., Stripe checkout)',
     }),
     defineField({
       name: 'stripePaymentUrl',
-      title: 'Stripe Payment URL',
+      title: 'Stripe Payment URL (Legacy)',
       type: 'url',
       group: 'integrations',
+      description: 'Legacy Stripe payment URL - use Pricing CTA URL instead',
     }),
     defineField({
       name: 'calendarBookingUrl',

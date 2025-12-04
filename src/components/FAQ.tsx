@@ -17,7 +17,7 @@ interface FAQProps {
 const defaultFAQs = [
   { _id: '1', question: 'How fast will I receive my designs?', answer: 'On average, most requests are completed in just two days or less. However, more complex requests can take longer.' },
   { _id: '2', question: 'How does onboarding work?', answer: "Subscribe to a plan and we'll quickly add you to your very own Trello board. This process usually takes about an hour to complete from the time you subscribe." },
-  { _id: '3', question: 'Who are the designers?', answer: "SiteGuard99 is run by a dedicated team. You'll work directly with us through the entirety of your experience." },
+  { _id: '3', question: 'Who are the designers?', answer: "The WordPress Team is run by a dedicated team. You'll work directly with us through the entirety of your experience." },
   { _id: '4', question: 'Is there a limit to how many requests I can make?', answer: "Once subscribed, you're able to add as many design requests to your queue as you'd like, and they will be delivered one by one." },
   { _id: '5', question: 'How does the pause feature work?', answer: "We understand you may not have enough design work to fill up entire month. That's where pausing your subscription comes in handy. Billing cycles are based on 31 day period." },
   { _id: '6', question: 'How do you handle larger requests?', answer: "Larger requests are broken down on our end. You should expect to receive a reasonable amount of work every 24-48 hours until the entire request is done." },
@@ -114,7 +114,7 @@ export default function FAQ({ section, items, settings }: FAQProps) {
                 Book a call
               </Link>
               <Link
-                href={`mailto:${settings?.contactEmail || 'hello@siteguard99.com'}`}
+                href={`mailto:${settings?.contactEmail || 'hello@thewordpressteam.co.za'}`}
                 className="flex items-center justify-between bg-white rounded-2xl p-4 hover:bg-gray-100 transition group"
               >
                 <div className="flex items-center gap-4">
@@ -122,7 +122,7 @@ export default function FAQ({ section, items, settings }: FAQProps) {
                   <div>
                     <p className="font-medium">{section?.emailPrompt || 'Prefer to email?'}</p>
                     <p className="text-sm text-gray-500">
-                      {settings?.contactEmail || 'hello@siteguard99.com'}
+                      {settings?.contactEmail || 'hello@thewordpressteam.co.za'}
                     </p>
                   </div>
                 </div>

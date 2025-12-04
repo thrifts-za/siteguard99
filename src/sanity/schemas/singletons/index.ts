@@ -8,6 +8,8 @@ import faqSection from './faqSection'
 import footerSection from './footerSection'
 import recentWorkSection from './recentWorkSection'
 import siteGraphics from './siteGraphics'
+import termsAndConditions from './termsAndConditions'
+import privacyPolicy from './privacyPolicy'
 
 export const singletonTypes = [
   siteSettings,
@@ -20,6 +22,8 @@ export const singletonTypes = [
   pricingSection,
   faqSection,
   footerSection,
+  termsAndConditions,
+  privacyPolicy,
 ]
 
 export const singletonActions = new Set(['publish', 'discardChanges', 'restore'])

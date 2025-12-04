@@ -20,13 +20,13 @@ export const client: SanityClient | null = isSanityConfigured
   : null
 
 // Safely fetch data - returns null if Sanity is not configured
-export async function safeFetch<T>(query: string): Promise<T | null> {
+export async function safeFetch<T>(query: string, params?: Record<string, unknown>): Promise<T | null> {
   if (!client) {
     console.log('Sanity not configured - using default data')
     return null
   }
   try {
-    return await client.fetch(query)
+    return await client.fetch(query, params || {}, { cache: 'no-store' })
   } catch (error) {
     console.error('Error fetching from Sanity:', error)
     return null

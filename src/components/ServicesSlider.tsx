@@ -7,11 +7,9 @@ interface Benefit {
   _id: string
   title: string
   description: string
-  icon?: {
-    asset?: {
-      url?: string
-    }
-  }
+  emoji?: string
+  iconUrl?: string
+  background?: string
   colorScheme?: string
   order?: number
 }
@@ -20,24 +18,14 @@ interface ServicesSliderProps {
   benefits: Benefit[]
 }
 
-// Map color schemes to CSS classes
-const colorClassMap: Record<string, string> = {
-  purple: '_1',
-  blue: '_3',
-  orange: '_2',
-  pink: '_4',
-  green: '_5',
-  yellow: '_6',
-}
-
-// Default icons for benefits if not provided from Sanity
-const defaultIcons: Record<string, string> = {
-  'Design board': '/images/678548430d58f4cbecec1999_Trello-Logo--Streamline-Logos.png',
-  'Fixed monthly rate': '/images/678548430d58f4cbecec199b_Lock-Square-Dial-Pad--Streamline-Nova.png',
-  'Fast delivery': '/images/678548430d58f4cbecec1997_Flash-Enable-Allow-1--Streamline-Nova.png',
-  'Top-notch quality': '/images/678548430d58f4cbecec199d_Star--Streamline-Nova.png',
-  'Flexible and scalable': '/images/678548430d58f4cbecec199f_Resize-Expand--Streamline-Nova.png',
-  'Unique and all yours': '/images/678548430d58f4cbecec19a1_Touch-Id--Streamline-Nova.png',
+// Default emojis for legacy benefits
+const defaultEmojis: Record<string, string> = {
+  'Design board': '📋',
+  'Fixed monthly rate': '💰',
+  'Fast delivery': '⚡',
+  'Top-notch quality': '⭐',
+  'Flexible and scalable': '🔀',
+  'Unique and all yours': '💎',
 }
 
 export default function ServicesSlider({ benefits }: ServicesSliderProps) {
@@ -53,11 +41,57 @@ export default function ServicesSlider({ benefits }: ServicesSliderProps) {
     }
   }
 
-  const getIconUrl = (benefit: Benefit) => {
-    if (benefit.icon?.asset?.url) {
-      return benefit.icon.asset.url
+  const renderIcon = (benefit: Benefit) => {
+    // If custom icon image URL from Sanity, use it
+    if (benefit.iconUrl) {
+      return (
+        <Image
+          src={benefit.iconUrl}
+          alt=""
+          width={80}
+          height={80}
+          className="image-8"
+        />
+      )
     }
-    return defaultIcons[benefit.title] || '/images/678548430d58f4cbecec199d_Star--Streamline-Nova.png'
+
+    // Use emoji from Sanity or fallback
+    const emoji = benefit.emoji || defaultEmojis[benefit.title] || '⭐'
+    return (
+      <span className="text-5xl" role="img" aria-label={benefit.title}>
+        {emoji}
+      </span>
+    )
+  }
+
+  // Get background style - use background image if set, otherwise fall back to CSS class
+  const getBackgroundStyle = (benefit: Benefit, index: number) => {
+    if (benefit.background) {
+      return {
+        backgroundImage: `url('/images/benefit-bg-${benefit.background}.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }
+    }
+    return {}
+  }
+
+  // Get CSS class for color-based backgrounds (fallback)
+  const getBackgroundClass = (benefit: Benefit, index: number) => {
+    if (benefit.background) {
+      return '' // No CSS class needed when using image
+    }
+    // Legacy color scheme support
+    const colorClassMap: Record<string, string> = {
+      red: '_1',
+      purple: '_1',
+      blue: '_3',
+      orange: '_2',
+      pink: '_4',
+      green: '_5',
+      yellow: '_6',
+    }
+    return colorClassMap[benefit.colorScheme || ''] || `_${(index % 6) + 1}`
   }
 
   return (
@@ -66,14 +100,11 @@ export default function ServicesSlider({ benefits }: ServicesSliderProps) {
         <div className="services__row" ref={servicesRowRef}>
           {benefits.map((benefit, index) => (
             <div key={benefit._id} className={`services__col ${index === benefits.length - 1 ? 'last' : ''}`}>
-              <div className={`services__block ${colorClassMap[benefit.colorScheme || ''] || `_${(index % 6) + 1}`}`}>
-                <Image
-                  src={getIconUrl(benefit)}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="image-8"
-                />
+              <div
+                className={`services__block ${getBackgroundClass(benefit, index)}`}
+                style={getBackgroundStyle(benefit, index)}
+              >
+                {renderIcon(benefit)}
               </div>
               <div className="services__header">{benefit.title}</div>
               <p className="services__p">{benefit.description}</p>
@@ -84,11 +115,11 @@ export default function ServicesSlider({ benefits }: ServicesSliderProps) {
 
         {/* Scroll arrows */}
         <div className="services-arrows">
-          <div className="left-arrow-2" onClick={() => scrollServices('left')}>
-            <div className="w-icon-slider-left"></div>
+          <div className="left-arrow-2" onClick={() => scrollServices('left')} style={{ backgroundColor: '#e63946' }}>
+            <div className="w-icon-slider-left" style={{ color: '#ffffff' }}></div>
           </div>
-          <div className="right-arrow-2" onClick={() => scrollServices('right')}>
-            <div className="w-icon-slider-right"></div>
+          <div className="right-arrow-2" onClick={() => scrollServices('right')} style={{ backgroundColor: '#e63946' }}>
+            <div className="w-icon-slider-right" style={{ color: '#ffffff' }}></div>
           </div>
         </div>
 
@@ -99,14 +130,11 @@ export default function ServicesSlider({ benefits }: ServicesSliderProps) {
               {benefits.map((benefit, index) => (
                 <div key={`mobile-${benefit._id}`} className="blog-item w-slide">
                   <div className={`services__col ${index === benefits.length - 1 ? 'last' : ''}`}>
-                    <div className={`services__block ${colorClassMap[benefit.colorScheme || ''] || `_${(index % 6) + 1}`}`}>
-                      <Image
-                        src={getIconUrl(benefit)}
-                        alt=""
-                        width={80}
-                        height={80}
-                        className="image-8"
-                      />
+                    <div
+                      className={`services__block ${getBackgroundClass(benefit, index)}`}
+                      style={getBackgroundStyle(benefit, index)}
+                    >
+                      {renderIcon(benefit)}
                     </div>
                     <div className="services__header">{benefit.title}</div>
                     <p className="services__p">{benefit.description}</p>
@@ -114,11 +142,11 @@ export default function ServicesSlider({ benefits }: ServicesSliderProps) {
                 </div>
               ))}
             </div>
-            <div className="left-arrow-2 w-slider-arrow-left">
-              <div className="w-icon-slider-left"></div>
+            <div className="left-arrow-2 w-slider-arrow-left" style={{ backgroundColor: '#e63946' }}>
+              <div className="w-icon-slider-left" style={{ color: '#ffffff' }}></div>
             </div>
-            <div className="right-arrow-2 w-slider-arrow-right">
-              <div className="w-icon-slider-right"></div>
+            <div className="right-arrow-2 w-slider-arrow-right" style={{ backgroundColor: '#e63946' }}>
+              <div className="w-icon-slider-right" style={{ color: '#ffffff' }}></div>
             </div>
             <div className="slide-nav w-slider-nav w-round"></div>
           </div>

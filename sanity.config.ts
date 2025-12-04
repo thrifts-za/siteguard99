@@ -10,8 +10,8 @@ const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || ''
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
 export default defineConfig({
-  name: 'siteguard99-studio',
-  title: 'SiteGuard99 Studio',
+  name: 'thewordpressteam-studio',
+  title: 'The WordPress Team Studio',
   projectId,
   dataset,
   basePath: '/studio',

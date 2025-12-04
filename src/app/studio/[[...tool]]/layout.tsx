@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'SiteGuard99 Studio',
-  description: 'Content management for SiteGuard99',
+  title: 'The WordPress Team Studio',
+  description: 'Content management for The WordPress Team',
 }
 
 export default function StudioLayout({

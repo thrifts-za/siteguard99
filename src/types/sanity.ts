@@ -33,6 +33,8 @@ export interface SiteSettings {
   siteUrl?: string
   headerLogoUrl?: string
   footerLogoUrl?: string
+  headerLogoColor?: 'red' | 'default'
+  footerLogoColor?: 'red' | 'default'
   seo?: SEOMetadata
   // Favicons
   faviconUrl?: string
@@ -66,7 +68,9 @@ export interface SiteSettings {
     github?: string
   }
   contactEmail: string
+  showLoginButton?: boolean
   loginUrl?: string
+  pricingCtaUrl?: string
   stripePaymentUrl?: string
   calendarBookingUrl?: string
 }
@@ -83,12 +87,14 @@ export interface HeroSection {
   bookCallTitle: string
   bookCallSubtitle: string
   founderImage?: SanityImage
+  founderImageUrl?: string
 }
 
 export interface HowItWorksCard {
   title: string
   description: string
   type: 'subscribe' | 'request' | 'receive'
+  iconUrl?: string
 }
 
 export interface HowItWorksSection {
@@ -127,6 +133,8 @@ export interface ClientLogo {
   _id: string
   name: string
   logo?: SanityImage
+  logoUrl?: string
+  useRedColor?: boolean
 }
 
 export interface Testimonial {
@@ -135,7 +143,9 @@ export interface Testimonial {
   authorName: string
   authorTitle?: string
   authorImage?: SanityImage
+  authorImageUrl?: string
   companyLogo?: SanityImage
+  companyLogoUrl?: string
 }
 
 export interface RecentWorkSection {
@@ -176,6 +186,12 @@ export interface PricingSection {
   trialTitle: string
   trialDescription: string
   memberCardImage?: SanityImage
+  clientsEyebrow?: string
+  clientsTitle?: string
+  clientsTitleItalic?: string
+  clientsTitleBreak?: boolean
+  clientsSubtitle?: string
+  clientLogos?: ClientLogo[]
 }
 
 export interface FaqSection {

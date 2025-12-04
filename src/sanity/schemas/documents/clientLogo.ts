@@ -1,15 +1,15 @@
 import { defineType, defineField } from 'sanity'
-import { ImageIcon } from '@sanity/icons'
+import { PlugIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'clientLogo',
-  title: 'Client Logo',
+  title: 'WordPress Tools',
   type: 'document',
-  icon: ImageIcon,
+  icon: PlugIcon,
   fields: [
     defineField({
       name: 'name',
-      title: 'Client Name',
+      title: 'Tool Name',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -25,6 +25,13 @@ export default defineType({
       title: 'Display Order',
       type: 'number',
       initialValue: 0,
+    }),
+    defineField({
+      name: 'useRedColor',
+      title: 'Use Red Color',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Check this to display the logo in red brand color instead of black',
     }),
   ],
   orderings: [

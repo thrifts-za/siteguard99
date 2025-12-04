@@ -27,24 +27,24 @@ export default function Footer({ footer, settings }: FooterProps) {
               {settings?.logo ? (
                 <Image
                   src={urlFor(settings.logo).width(150).url()}
-                  alt={settings.siteName || 'SiteGuard99'}
+                  alt={settings.siteName || 'The WordPress Team'}
                   width={150}
                   height={40}
                   className="h-8 w-auto invert"
                 />
               ) : (
-                <span className="text-xl font-semibold text-white">
-                  {settings?.siteName || 'SiteGuard99'}
+                <span className="text-2xl font-bold text-white">
+                  {settings?.siteName || 'The WordPress Team'}
                 </span>
               )}
             </Link>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-6">
-              {footer?.ctaTitle || 'See if SiteGuard99 is the right fit for you'}{' '}
+              {footer?.ctaTitle || 'See if The WordPress Team is the right fit for you'}{' '}
               <span className="text-italics">{footer?.ctaTitleItalic || '(it totally is)'}</span>
             </h2>
             <p className="text-gray-400 mb-8">
-              {footer?.ctaSubtitle || 'Schedule a quick, 15 minute guided tour through SiteGuard99.'}
+              {footer?.ctaSubtitle || 'Schedule a quick, 15 minute guided tour through The WordPress Team.'}
             </p>
 
             {/* Smiley Faces Decoration */}
@@ -112,7 +112,7 @@ export default function Footer({ footer, settings }: FooterProps) {
                   <div className="text-center">
                     <p className="mb-4">Calendar booking not configured</p>
                     <Link
-                      href={`mailto:${settings?.contactEmail || 'hello@siteguard99.com'}`}
+                      href={`mailto:${settings?.contactEmail || 'hello@thewordpressteam.co.za'}`}
                       className="btn-primary bg-white text-black"
                     >
                       Email us instead

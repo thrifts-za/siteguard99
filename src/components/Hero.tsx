@@ -11,7 +11,7 @@ interface HeroProps {
 }
 
 export default function Hero({ hero, settings }: HeroProps) {
-  const siteName = settings?.siteName || 'SiteGuard99'
+  const siteName = settings?.siteName || 'The WordPress Team'
 
   return (
     <div className="hero">
@@ -25,8 +25,8 @@ export default function Hero({ hero, settings }: HeroProps) {
                   <Image
                     src="/images/678548430d58f4cbecec19d7_Designjoy.svg"
                     alt={siteName}
-                    width={150}
-                    height={40}
+                    width={200}
+                    height={53}
                     className="image-23"
                   />
                 </Link>

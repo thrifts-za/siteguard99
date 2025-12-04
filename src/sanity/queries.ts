@@ -53,7 +53,9 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0] {
 
   // Social & Integrations
   socialLinks,
+  showLoginButton,
   loginUrl,
+  pricingCtaUrl,
   stripePaymentUrl,
   calendarBookingUrl
 }`
@@ -65,6 +67,8 @@ export const pageDataQuery = groq`{
     siteUrl,
     "headerLogoUrl": headerLogo.asset->url,
     "footerLogoUrl": footerLogo.asset->url,
+    headerLogoColor,
+    footerLogoColor,
     seo {
       metaTitle,
       metaDescription,
@@ -72,7 +76,9 @@ export const pageDataQuery = groq`{
     },
     socialLinks,
     contactEmail,
+    showLoginButton,
     loginUrl,
+    pricingCtaUrl,
     stripePaymentUrl,
     calendarBookingUrl
   },
@@ -87,13 +93,17 @@ export const pageDataQuery = groq`{
     memberCardImage,
     bookCallTitle,
     bookCallSubtitle,
-    founderImage
+    "founderImageUrl": founderImage.asset->url
   },
   "howItWorks": *[_type == "howItWorksSection"][0] {
     titlePart1,
     titleItalic,
     titlePart2,
-    cards,
+    cards[] {
+      title,
+      description,
+      "iconUrl": icon.asset->url
+    },
     servicePills
   },
   "about": *[_type == "aboutSection"][0] {
@@ -113,22 +123,25 @@ export const pageDataQuery = groq`{
     _id,
     title,
     description,
-    icon,
+    emoji,
+    "iconUrl": icon.asset->url,
+    background,
     colorScheme,
     order
   },
   "clientLogos": *[_type == "clientLogo"] | order(order asc) {
     _id,
     name,
-    logo
+    "logoUrl": logo.asset->url,
+    useRedColor
   },
   "testimonials": *[_type == "testimonial"] | order(order asc) {
     _id,
     quote,
     authorName,
     authorTitle,
-    authorImage,
-    companyLogo
+    "authorImageUrl": authorImage.asset->url,
+    "companyLogoUrl": companyLogo.asset->url
   },
   "recentWorkSection": *[_type == "recentWorkSection"][0] {
     title,
@@ -164,7 +177,18 @@ export const pageDataQuery = groq`{
     pauseDescription,
     trialTitle,
     trialDescription,
-    memberCardImage
+    memberCardImage,
+    clientsEyebrow,
+    clientsTitle,
+    clientsTitleItalic,
+    clientsTitleBreak,
+    clientsSubtitle,
+    "clientLogos": clientLogos[]-> {
+      _id,
+      name,
+      "logoUrl": logo.asset->url,
+      useRedColor
+    }
   },
   "faqSection": *[_type == "faqSection"][0] {
     titleItalic,

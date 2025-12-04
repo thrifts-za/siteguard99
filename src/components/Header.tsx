@@ -20,14 +20,14 @@ export default function Header({ settings }: HeaderProps) {
           <Link href="/" className="flex items-center gap-2">
             {settings?.logo ? (
               <Image
-                src={urlFor(settings.logo).width(150).url()}
-                alt={settings.siteName || 'SiteGuard99'}
-                width={150}
-                height={40}
+                src={urlFor(settings.logo).width(200).url()}
+                alt={settings.siteName || 'The WordPress Team'}
+                width={200}
+                height={60}
                 className="h-8 w-auto"
               />
             ) : (
-              <span className="text-xl font-semibold">{settings?.siteName || 'SiteGuard99'}</span>
+              <span className="text-2xl font-bold">{settings?.siteName || 'The WordPress Team'}</span>
             )}
           </Link>
 

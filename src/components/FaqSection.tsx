@@ -68,10 +68,10 @@ export default function FaqSection({
               </div>
             </div>
 
-            <div className="faq__card">
+            <div className="faq__card" style={{ backgroundImage: 'url(/images/call-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="faq__card-inner">
                 <Image
-                  src="/images/678548430d58f4cbecec19b9_Group 10.png"
+                  src="/images/group10.svg"
                   alt=""
                   width={200}
                   height={200}

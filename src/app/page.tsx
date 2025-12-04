@@ -7,50 +7,53 @@ import LottieAnimation from '@/components/LottieAnimation'
 import FaqSection from '@/components/FaqSection'
 import ServicesSlider from '@/components/ServicesSlider'
 import Logo from '@/components/Logo'
+import CalBooker from '@/components/CalBooker'
 
 // Default data for fallback when Sanity is not available
 const defaultData: PageData = {
   siteSettings: {
-    siteName: 'SiteGuard99',
-    contactEmail: 'hello@designjoy.co',
+    siteName: 'The WordPress Team',
+    contactEmail: 'emmanuel@thewordpressteam.co.za',
+    showLoginButton: false,
     loginUrl: 'https://billing.stripe.com/p/login/14keXT4Qa8wh5k4dQQ',
+    pricingCtaUrl: '',
     stripePaymentUrl: 'https://buy.stripe.com/9B68wP42335o38v2v57bW09',
-    calendarBookingUrl: 'https://calendly.com/designjoy/15min',
+    calendarBookingUrl: 'https://calendly.com/thewordpressteam/15min',
   },
   hero: {
-    headlinePart1: 'Design subscriptions for',
+    headlinePart1: 'WordPress maintenance for',
     headlineItalic: 'everyone',
     subtitle: 'Pause or cancel anytime.',
     memberCardBadge: 'Start today',
     memberCardTitle1: 'Join',
-    memberCardTitle2: 'SiteGuard99',
-    memberCardSubtitle: 'One subscription to rule them all.',
+    memberCardTitle2: 'The WordPress Team',
+    memberCardSubtitle: 'One subscription to secure them all.',
     bookCallTitle: 'Book a 15-min intro call',
     bookCallSubtitle: 'Schedule now',
   },
   howItWorks: {
-    titlePart1: 'The way design',
+    titlePart1: 'The way WordPress maintenance',
     titleItalic: "should've",
     titlePart2: 'been done in the first place',
     cards: [
-      { title: 'Subscribe', description: "Subscribe to a plan & request as many designs as you'd like.", type: 'subscribe' },
-      { title: 'Request', description: "Request whatever you'd like, from mobile apps to logos.", type: 'request' },
-      { title: 'Receive', description: 'Receive your design within two business days on average.', type: 'receive' },
+      { title: 'Subscribe', description: "Subscribe to a plan & request as many fixes as you'd like.", type: 'subscribe' },
+      { title: 'Request', description: 'Request whatever you need, from security fixes to speed optimization.', type: 'request' },
+      { title: 'Receive', description: 'Receive your fix within two business days on average, weekends included.', type: 'receive' },
     ],
-    servicePills: ['Mobile apps', 'Presentations', 'Logos', 'Social Media', 'Email', 'Webflow', 'Print design', 'Packaging', 'Ad creative', 'Landing pages', 'Branding', 'Display ads', 'User interface'],
+    servicePills: ['Security fixes', 'Malware removal', 'Speed optimization', 'Plugin updates', 'Backup restoration', 'Performance tuning', 'Site migrations', 'SEO fixes', 'Database cleanup', 'Uptime monitoring', 'Emergency support', 'Content updates', 'SSL certificates'],
   },
   about: {
-    storyText: 'First launched in 2017, SiteGuard99 revolutionized the design industry with its subscription-based model. To this day, SiteGuard99 is run entirely by Brett. SiteGuard99 doesn\'t hire extra designers or outsource work—instead, it focuses on delivering top-notch quality to a limited roster of clients at a time.',
-    founderName: 'Brett',
-    founderLink: 'https://x.com/BrettFromDJ',
-    yearFounded: '2017',
+    storyText: 'First launched in 2024, The WordPress Team revolutionized WordPress maintenance with its subscription-based model. Run by WordPress experts who focus on delivering top-notch security and performance to a limited roster of clients at a time. No outsourcing, no offshore teams—just dedicated expert care.',
+    founderName: '',
+    founderLink: '',
+    yearFounded: '2024',
   },
   benefitsSection: {
     eyebrow: 'Membership benefits',
     titlePart1: "It's",
     titleItalic: '"you\'ll never go back"',
     titlePart2: 'better',
-    subtitle: "SiteGuard99 replaces unreliable freelancers and expensive agencies for one flat monthly fee, with designs delivered so fast you won't want to go anywhere else.",
+    subtitle: "The WordPress Team replaces unreliable freelancers and expensive agencies for one flat monthly fee, with fixes delivered so fast that your WordPress site just works—without you thinking about it.",
   },
   benefits: [
     { _id: '1', title: 'Design board', description: 'Easily manage your design queue with a Trello board.', colorScheme: 'purple', order: 1 },
@@ -60,9 +63,15 @@ const defaultData: PageData = {
     { _id: '5', title: 'Flexible and scalable', description: 'Scale up or down as needed, and pause or cancel at anytime.', colorScheme: 'green', order: 5 },
     { _id: '6', title: 'Unique and all yours', description: 'Every design is made especially for you and is 100% yours.', colorScheme: 'yellow', order: 6 },
   ],
-  clientLogos: [],
+  clientLogos: [
+    { _id: '1', name: 'Nectar', logoUrl: '/images/678548430d58f4cbecec1986_Nectar-sleep-logo-vector 1.svg', useRedColor: false },
+    { _id: '2', name: 'Buy Me a Coffee', logoUrl: '/images/678548430d58f4cbecec1987_bmc-full-logo 1.svg', useRedColor: false },
+    { _id: '3', name: 'Levels', logoUrl: '/images/678548430d58f4cbecec198a_svg.svg', useRedColor: false },
+    { _id: '4', name: 'Beehiiv', logoUrl: '/images/678548430d58f4cbecec1989_Vector.svg', useRedColor: false },
+    { _id: '5', name: 'Otta', logoUrl: '/images/678548430d58f4cbecec1988_6203180d8e14605fb2d2c003_Vector 1.svg', useRedColor: false },
+  ],
   testimonials: [
-    { _id: '1', quote: 'SiteGuard99 shows that they know the art of subtlety.', authorName: 'Webflow', authorTitle: '' },
+    { _id: '1', quote: 'The WordPress Team shows that they know the art of subtlety.', authorName: 'Webflow', authorTitle: '' },
     { _id: '2', quote: 'Design is everything, and these guys have nailed it.', authorName: "Kevin O'Leary", authorTitle: 'Shark Tank' },
   ],
   recentWorkSection: {
@@ -113,24 +122,24 @@ const defaultData: PageData = {
   faqItems: [
     { _id: '1', question: 'How fast will I receive my designs?', answer: 'On average, most requests are completed in just two days or less. However, more complex requests can take longer.' },
     { _id: '2', question: 'How does onboarding work?', answer: "Subscribe to a plan and we'll quickly add you to your very own Trello board. This process usually takes about an hour to complete from the time you subscribe." },
-    { _id: '3', question: 'Who are the designers?', answer: "SiteGuard99 is a one-man agency, ran by Brett, the founder. SiteGuard99 does not employ other designers, or outsource work to any other entity." },
+    { _id: '3', question: 'Who are the designers?', answer: "The WordPress Team is a one-man agency, ran by Brett, the founder. The WordPress Team does not employ other designers, or outsource work to any other entity." },
     { _id: '4', question: 'Is there a limit to how many requests I can make?', answer: "Once subscribed, you're able to add as many design requests to your queue as you'd like, and they will be delivered one by one." },
     { _id: '5', question: 'How does the pause feature work?', answer: "We understand you may not have enough design work to fill up entire month. Billing cycles are based on 31 day period." },
-    { _id: '6', question: 'How do you handle larger requests?', answer: "Larger requests are broken down on SiteGuard99's end. You should expect to receive a reasonable amount of work every 24-48 hours until the entire request is done." },
+    { _id: '6', question: 'How do you handle larger requests?', answer: "Larger requests are broken down on The WordPress Team's end. You should expect to receive a reasonable amount of work every 24-48 hours until the entire request is done." },
     { _id: '7', question: 'What programs do you design in?', answer: 'Most requests are designed using Figma.' },
     { _id: '8', question: 'How does Webflow development work?', answer: "Webflow development is included with all subscriptions and is simply treated as a design request." },
-    { _id: '9', question: 'How will I request designs?', answer: "SiteGuard99 offers a ton of flexibility in how you request designs using Trello." },
+    { _id: '9', question: 'How will I request designs?', answer: "The WordPress Team offers a ton of flexibility in how you request designs using Trello." },
     { _id: '10', question: "What if I don't like the design?", answer: "No worries! We'll continue to revise the design until you're 100% satisfied." },
-    { _id: '11', question: "Are there any requests you don't support?", answer: "Absolutely. SiteGuard99 does not cover: 3D modeling, animated graphics, document design, complex packaging, extensive print design, and Adobe InDesign documents." },
+    { _id: '11', question: "Are there any requests you don't support?", answer: "Absolutely. The WordPress Team does not cover: 3D modeling, animated graphics, document design, complex packaging, extensive print design, and Adobe InDesign documents." },
     { _id: '12', question: 'What if I only have a single request?', answer: "That's fine. You can pause your subscription when finished and return when you have additional design needs." },
     { _id: '13', question: 'Are there any refunds?', answer: "Due to the high quality nature of the work, there will be no refunds issued past the first week of service." },
-    { _id: '14', question: 'Can I use SiteGuard99 for just a month?', answer: "For sure. Whether you need SiteGuard99 for a month or a year, the choice is yours." },
+    { _id: '14', question: 'Can I use The WordPress Team for just a month?', answer: "For sure. Whether you need The WordPress Team for a month or a year, the choice is yours." },
   ],
   footer: {
-    ctaTitle: 'See if SiteGuard99 is the right fit for you',
+    ctaTitle: 'See if The WordPress Team is the right fit for you',
     ctaTitleItalic: '(it totally is)',
-    ctaSubtitle: 'Schedule a quick, 15 minute guided tour through SiteGuard99.',
-    noticeText: 'SiteGuard99 is experiencing a high volume of bookings, so slots are limited. For faster service, email for a same-day response.',
+    ctaSubtitle: 'Schedule a quick, 15 minute guided tour through The WordPress Team.',
+    noticeText: 'The WordPress Team is experiencing a high volume of bookings, so slots are limited. For faster service, email for a same-day response.',
     headquarters: 'Headquartered in Phoenix, Arizona',
     termsUrl: 'https://brettwill1025.notion.site/Terms-Conditions-4901d894656448a69c4c4e04d40d3bbc',
     privacyUrl: 'https://brettwill1025.notion.site/DesignJoy-Privacy-Policy-0011594d80724a68821940237f9f7b02',
@@ -140,10 +149,10 @@ const defaultData: PageData = {
 
 // Default image paths (fallbacks when Sanity images are not available)
 const defaultImages = {
-  heroMemberCard: '/images/678548430d58f4cbecec196c_card.png',
+  heroMemberCard: '/images/card.png',
   heroCallAvatar: '/images/678548430d58f4cbecec196f_Group 11.png',
   subscribePriceTag: '/images/678548430d58f4cbecec1977_price.svg',
-  requestSmile: '/images/678548430d58f4cbecec197e_Smile.png',
+  requestSmile: '/images/wordpress-seeklogo.svg',
   testimonialWebflowLogo: 'https://cdn.prod.website-files.com/678005a5d025f688a34957f1/678199f71b779683c0d14a8f_65dd4dae1c85fee7c339650a_Webflow_logo_2023%20(1)%201.svg',
   testimonialAuthorImage: '/images/678548430d58f4cbecec19bd_Group 1171274555.png',
   pricingCardImage: '/images/678548430d58f4cbecec19a8_Group 1171274554.png',
@@ -160,11 +169,11 @@ const defaultImages = {
   servicesDecorative1: '/images/678548430d58f4cbecec19d4_pink.svg',
   servicesDecorative2: '/images/678548430d58f4cbecec19d6_Group 1171274487.svg',
   clientLogos: [
-    { name: 'Nectar', logoUrl: '/images/678548430d58f4cbecec1986_Nectar-sleep-logo-vector 1.svg' },
-    { name: 'Buy Me a Coffee', logoUrl: '/images/678548430d58f4cbecec1987_bmc-full-logo 1.svg' },
-    { name: 'Levels', logoUrl: '/images/678548430d58f4cbecec198a_svg.svg' },
-    { name: 'Beehiiv', logoUrl: '/images/678548430d58f4cbecec1989_Vector.svg' },
-    { name: 'Otta', logoUrl: '/images/678548430d58f4cbecec1988_6203180d8e14605fb2d2c003_Vector 1.svg' },
+    { name: 'Nectar', logoUrl: '/images/678548430d58f4cbecec1986_Nectar-sleep-logo-vector 1.svg', useRedColor: false },
+    { name: 'Buy Me a Coffee', logoUrl: '/images/678548430d58f4cbecec1987_bmc-full-logo 1.svg', useRedColor: false },
+    { name: 'Levels', logoUrl: '/images/678548430d58f4cbecec198a_svg.svg', useRedColor: false },
+    { name: 'Beehiiv', logoUrl: '/images/678548430d58f4cbecec1989_Vector.svg', useRedColor: false },
+    { name: 'Otta', logoUrl: '/images/678548430d58f4cbecec1988_6203180d8e14605fb2d2c003_Vector 1.svg', useRedColor: false },
   ],
   recentWorkImages: [
     { name: 'Project 1', imageUrl: '/images/678548430d58f4cbecec19ea_Group 1171274558.png' },
@@ -200,7 +209,7 @@ export default async function Home() {
     about: sanityData?.about || defaultData.about,
     benefitsSection: sanityData?.benefitsSection || defaultData.benefitsSection,
     benefits: sanityData?.benefits?.length ? sanityData.benefits : defaultData.benefits,
-    clientLogos: sanityData?.clientLogos || defaultData.clientLogos,
+    clientLogos: sanityData?.clientLogos?.length ? sanityData.clientLogos : defaultData.clientLogos,
     testimonials: sanityData?.testimonials?.length ? sanityData.testimonials : defaultData.testimonials,
     recentWorkSection: sanityData?.recentWorkSection || defaultData.recentWorkSection,
     recentWorkItems: sanityData?.recentWorkItems || defaultData.recentWorkItems,
@@ -258,18 +267,24 @@ export default async function Home() {
                   <Link href="#" className="hero__logo-block w-inline-block">
                     <Logo
                       logoUrl={siteSettings?.headerLogoUrl}
-                      siteName={siteSettings?.siteName || 'SiteGuard99'}
+                      siteName={siteSettings?.siteName || 'The WordPress Team'}
                       variant="header"
+                      color={siteSettings?.headerLogoColor || 'red'}
                     />
                   </Link>
                   <div className="hero__buttons-flex">
-                    <a
-                      href={siteSettings?.loginUrl || '#'}
-                      target="_blank"
-                      className="button-outline w-inline-block"
-                    >
-                      <div>Login</div>
-                    </a>
+                    <Link href="/blog" className="button-outline w-inline-block">
+                      <div>Blog</div>
+                    </Link>
+                    {siteSettings?.showLoginButton && (
+                      <a
+                        href={siteSettings?.loginUrl || '#'}
+                        target="_blank"
+                        className="button-outline w-inline-block"
+                      >
+                        <div>Login</div>
+                      </a>
+                    )}
                     <Link href="#book" className="button-outline w-inline-block">
                       <Image
                         src={images.phoneIcon}
@@ -316,7 +331,7 @@ export default async function Home() {
                   <Link href="#book" className="hero__member-card-call w-inline-block">
                     <div className="hero__member-card-call-left">
                       <Image
-                        src={images.heroCallAvatar}
+                        src={hero?.founderImageUrl || images.heroCallAvatar}
                         alt=""
                         width={48}
                         height={48}
@@ -335,7 +350,7 @@ export default async function Home() {
                     />
                   </Link>
                   <Image
-                    src={images.heroMemberCard}
+                    src="/images/card.png"
                     alt=""
                     width={688}
                     height={400}
@@ -369,7 +384,7 @@ export default async function Home() {
                   </p>
                 </div>
                 <Image
-                  src={images.subscribePriceTag}
+                  src={howItWorks?.cards?.[0]?.iconUrl || images.subscribePriceTag}
                   alt=""
                   width={200}
                   height={200}
@@ -443,7 +458,7 @@ export default async function Home() {
                     </div>
                     <div className="request__block">
                       <Image
-                        src={images.requestSmile}
+                        src={howItWorks?.cards?.[1]?.iconUrl || images.requestSmile}
                         alt=""
                         width={80}
                         height={80}
@@ -462,20 +477,34 @@ export default async function Home() {
                     {howItWorks?.cards?.[2]?.description || 'Receive your design within two business days on average.'}
                   </p>
                 </div>
-                <div className="div-block-2">
-                  <div className="stack">
-                    <div className="front-design"></div>
-                    <div className="middle-design"></div>
-                    <div className="bottom-design"></div>
-                  </div>
-                </div>
+                <Image
+                  src={howItWorks?.cards?.[2]?.iconUrl || images.subscribePriceTag}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="image-3"
+                />
               </div>
             </div>
 
             {/* Client Logos */}
             <div className="logos__row">
-              {images.clientLogos.map((client, i) => (
-                <Image key={i} src={client.logoUrl} alt={client.name} width={120} height={40} />
+              {data.clientLogos.map((client, i) => client.logoUrl && (
+                <Image
+                  key={i}
+                  src={client.logoUrl}
+                  alt={client.name}
+                  width={120}
+                  height={32}
+                  style={{
+                    filter: client.useRedColor
+                      ? 'brightness(0) saturate(100%) invert(29%) sepia(93%) saturate(2080%) hue-rotate(342deg) brightness(99%) contrast(97%)'
+                      : 'brightness(0)',
+                    height: '32px',
+                    width: 'auto',
+                    objectFit: 'contain'
+                  }}
+                />
               ))}
             </div>
           </div>
@@ -490,14 +519,7 @@ export default async function Home() {
           <div className="inner-container">
             <div className="div-block-32">
               <p className="story-text _4">
-                First launched in {about?.yearFounded || '2017'}, {siteSettings?.siteName || 'SiteGuard99'}{' '}
-                <span className="text-italics">revolutionized</span> the design industry with its
-                subscription-based model. To this day, {siteSettings?.siteName || 'SiteGuard99'} is run entirely by{' '}
-                <a href={about?.founderLink || 'https://x.com/BrettFromDJ'} target="_blank" className="link">
-                  {about?.founderName || 'Brett'}
-                </a>
-                . {siteSettings?.siteName || 'SiteGuard99'} doesn&apos;t hire extra designers or outsource work—instead, it
-                focuses on delivering top-notch quality to a limited roster of clients at a time.
+                {about?.storyText || "First launched in 2024, The WordPress Team revolutionized WordPress maintenance with its subscription-based model. Run by WordPress experts who focus on delivering top-notch security and performance to a limited roster of clients at a time. No outsourcing, no offshore teams—just dedicated expert care."}
               </p>
             </div>
             <div className="hiw__header-wrapper">
@@ -507,7 +529,7 @@ export default async function Home() {
                 <span>{benefitsSection?.titlePart2 || 'better'}</span>
               </h1>
               <p className="benefits__p">
-                {benefitsSection?.subtitle || "SiteGuard99 replaces unreliable freelancers and expensive agencies for one flat monthly fee, with designs delivered so fast you won't want to go anywhere else."}
+                {benefitsSection?.subtitle || "The WordPress Team replaces unreliable freelancers and expensive agencies for one flat monthly fee, with designs delivered so fast you won't want to go anywhere else."}
               </p>
             </div>
           </div>
@@ -524,31 +546,34 @@ export default async function Home() {
         <div className="container">
           <div className="inner-container slider">
             <div className="w-layout-grid grid-3">
-              {testimonials.slice(0, 2).map((testimonial, index) => (
+              {testimonials.slice(0, 2).map((testimonial) => (
                 <div key={testimonial._id} className="div-block-17">
                   <div className="div-block-14">
                     <div className="text-block-2">
                       &quot;{testimonial.quote}&quot;
                       <br />
                     </div>
-                    {index === 0 ? (
+                    {testimonial.companyLogoUrl ? (
                       <Image
-                        src={images.testimonialWebflowLogo}
-                        alt=""
-                        width={100}
-                        height={32}
+                        src={testimonial.companyLogoUrl}
+                        alt={testimonial.authorName || ''}
+                        width={140}
+                        height={44}
                         className="image-12"
+                        style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
                         unoptimized
                       />
                     ) : (
                       <div className="div-block-15">
-                        <Image
-                          src={images.testimonialAuthorImage}
-                          alt=""
-                          width={48}
-                          height={48}
-                          className="image-13"
-                        />
+                        {testimonial.authorImageUrl && (
+                          <Image
+                            src={testimonial.authorImageUrl}
+                            alt=""
+                            width={48}
+                            height={48}
+                            className="image-13"
+                          />
+                        )}
                         <div className="div-block-16">
                           <div className="text-block-3">{testimonial.authorName}</div>
                           <div>{testimonial.authorTitle}</div>
@@ -570,48 +595,27 @@ export default async function Home() {
         <div className="container m-t-0">
           <div className="inner-container">
             <div className="div-block-27">
-              <div className="div-block-28">
-                <div className="marquee">
-                  <div className="marquee-inner">
-                    <div className="marquee-element">
-                      {images.recentWorkImages.map((work, i) => (
-                        <Image key={i} src={work.imageUrl} alt={work.name} width={726} height={400} className="image-26" />
-                      ))}
-                    </div>
-                    <div className="marquee-element">
-                      {images.recentWorkImages.map((work, i) => (
-                        <Image key={`dup-${i}`} src={work.imageUrl} alt={work.name} width={726} height={400} className={i === 0 ? 'image-26 _3' : 'image-26'} />
-                      ))}
-                    </div>
-                  </div>
+              <div className="div-block-28" style={{ backgroundColor: '#0f2040', color: '#ffffff' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px 0' }}>
+                  <Image
+                    src="/images/hero-gfx.svg"
+                    alt="WordPress Maintenance"
+                    width={726}
+                    height={400}
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  />
                 </div>
                 <div className="_44959">
-                  <div>
-                    <div className="div-block-33">
-                      {images.awardBadges.map((badge, i) => (
-                        <div key={i} className="div-block-34">
-                          <div className="div-block-36">
-                            <div className="div-block-35">
-                              <Image src={badge.companyLogoUrl} alt="" width={24} height={24} />
-                            </div>
-                            <div>{badge.companyName}</div>
-                          </div>
-                          <div className="text-block-4">{badge.awardTitle}</div>
-                          <Image src={badge.awardSourceLogoUrl} alt="" width={100} height={20} className="image-31" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="hiw__card-header left _4">{recentWorkSection?.title || 'Recent work'}</div>
-                  <p className="hero__left-bottom-p m-t-12 left">
+                  <div className="hiw__card-header left _4" style={{ color: '#ffffff' }}>{recentWorkSection?.title || 'Recent work'}</div>
+                  <p className="hero__left-bottom-p m-t-12 left" style={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: 400 }}>
                     {recentWorkSection?.subtitle || 'We\'re talking "Product of the Year" good.'}
                   </p>
                   <a
-                    href={recentWorkSection?.ctaUrl || 'https://www.figma.com/proto/wbWTRa1jCey4uhInRAmH1r/Latest-Projects'}
-                    target="_blank"
+                    href="#pricing"
                     className="button-filled m-t-24 m-t-12 w-inline-block"
+                    style={{ padding: '16px 32px', fontSize: '18px' }}
                   >
-                    <div>{recentWorkSection?.ctaText || 'See recent work'}</div>
+                    <div>See pricing</div>
                   </a>
                 </div>
               </div>
@@ -634,8 +638,8 @@ export default async function Home() {
                     </p>
                   </div>
                 </div>
-                <Image src={images.servicesDecorative1} alt="" width={200} height={200} className="image-27" />
-                <Image src={images.servicesDecorative2} alt="" width={200} height={200} className="image-30" />
+                <Image src="/images/elementor.svg" alt="" width={1000} height={1000} className="image-27" />
+                <Image src="/images/gravity.svg" alt="" width={1000} height={1000} className="image-30" />
               </div>
             </div>
           </div>
@@ -666,11 +670,11 @@ export default async function Home() {
                   <div>{hero?.memberCardBadge || 'Start today'}</div>
                 </div>
                 <div className="hero__member-card-header">{hero?.memberCardTitle1 || 'Join'}</div>
-                <div className="hero__member-card-header bottom">{hero?.memberCardTitle2 || 'SiteGuard99'}</div>
+                <div className="hero__member-card-header bottom">{hero?.memberCardTitle2 || 'The WordPress Team'}</div>
               </div>
               <Image
                 className="image-10"
-                src={images.pricingCardImage}
+                src="/images/card.png"
                 alt=""
                 width={1631}
                 height={900}
@@ -678,24 +682,24 @@ export default async function Home() {
             </div>
             <div className="pricing__card">
               <div className="div-block-4">
-                <div className="pricing__card-header">{pricing?.planName || 'Monthly Club'}</div>
-                <div className="div-block-5">
-                  <div>{pricing?.planBadge || 'PAUSE OR CANCEL ANYTIME'}</div>
+                <div className="pricing__card-header" style={{ color: '#e63946' }}>{pricing?.planName || 'Monthly Club'}</div>
+                <div className="div-block-5" style={{ borderColor: '#e63946' }}>
+                  <div style={{ color: '#e63946' }}>{pricing?.planBadge || 'PAUSE OR CANCEL ANYTIME'}</div>
                 </div>
               </div>
               <div className="div-block-6">
-                <h2 className="m-t-0 m-b-0 _3">{pricing?.price || '$5,995'}</h2>
-                <div className="pricing__month">{pricing?.pricePeriod || '/month'}</div>
+                <h2 className="m-t-0 m-b-0 _3" style={{ color: '#e63946' }}>{pricing?.price || '$5,995'}</h2>
+                <div className="pricing__month" style={{ color: '#e63946' }}>{pricing?.pricePeriod || '/month'}</div>
               </div>
               <div className="div-block-7">
                 <div className="w-layout-grid grid">
                   <div className="pricing__list">
-                    {pricing?.features?.slice(0, 4).map((feature, i) => (
+                    {pricing?.features?.slice(0, Math.ceil((pricing?.features?.length || 0) / 2)).map((feature, i) => (
                       <div key={i}>{feature}</div>
                     ))}
                   </div>
                   <div className="pricing__list">
-                    {pricing?.features?.slice(4).map((feature, i) => (
+                    {pricing?.features?.slice(Math.ceil((pricing?.features?.length || 0) / 2)).map((feature, i) => (
                       <div key={i}>{feature}</div>
                     ))}
                   </div>
@@ -706,21 +710,21 @@ export default async function Home() {
               </div>
               <div className="div-block-9">
                 <a
-                  href={siteSettings?.stripePaymentUrl || 'https://buy.stripe.com/9B68wP42335o38v2v57bW09'}
+                  href={siteSettings?.pricingCtaUrl || siteSettings?.stripePaymentUrl || '#pricing'}
                   target="_blank"
-                  className="div-block-7-copy-copy w-inline-block"
+                  className="div-block-7-copy-copy w-inline-block cta-glow"
                 >
-                  <div className="div-block-8">
-                    <Image src={images.pricingSmileIcon} alt="" width={24} height={24} />
+                  <div className="div-block-8" style={{ backgroundColor: '#e63946' }}>
+                    <Image src="/images/wordpress-seeklogo.svg" alt="WordPress" width={24} height={24} />
                   </div>
                   <div>{pricing?.ctaText || 'Join today'}</div>
                 </a>
               </div>
-              <Image src={images.pricingDecorative1} alt="" width={200} height={200} className="image-29" />
+              <Image src="/images/wordpress-seeklogo-black.svg" alt="WordPress" width={200} height={200} className="image-29" style={{ filter: 'invert(24%) sepia(98%) saturate(2151%) hue-rotate(336deg) brightness(88%) contrast(95%)' }} />
             </div>
           </div>
           <div className="w-layout-grid grid-2">
-            <div className="div-block-10 _1">
+            <div className="div-block-10 _1" style={{ borderColor: '#e63946' }}>
               <div className="div-block-11">
                 <div className="div-block-12">
                   <Image src={images.pricingPauseIcon} alt="" width={24} height={24} />
@@ -731,7 +735,7 @@ export default async function Home() {
                 </p>
               </div>
             </div>
-            <div className="div-block-10">
+            <div className="div-block-10" style={{ borderColor: '#e63946' }}>
               <div className="div-block-11 _2">
                 <div className="div-block-12">
                   <Image src={images.pricingCheckIcon} alt="" width={24} height={24} className="invert" />
@@ -743,11 +747,38 @@ export default async function Home() {
               </div>
             </div>
           </div>
-          <div className="logos__row">
-            {images.clientLogos.map((client, i) => (
-              <Image key={i} src={client.logoUrl} alt={client.name} width={120} height={40} />
-            ))}
-          </div>
+          {pricing?.clientLogos && pricing.clientLogos.length > 0 && (
+            <>
+              <div className="hiw__header-wrapper" style={{ marginTop: '80px' }}>
+                <div className="eyebrow">{pricing?.clientsEyebrow || 'OUR CLIENTS'}</div>
+                <h1 className="dddd">
+                  {pricing?.clientsTitle || 'Trusted by'} {pricing?.clientsTitleBreak !== false && <br />}<span className="text-italics">{pricing?.clientsTitleItalic || 'industry leaders'}</span>
+                </h1>
+                <p className="hero__left-bottom-p m-t-12" style={{ textAlign: 'center', maxWidth: '600px', margin: '12px auto 0' }}>
+                  {pricing?.clientsSubtitle || 'Join the companies that trust us with their WordPress maintenance.'}
+                </p>
+              </div>
+              <div className="logos__row" style={{ marginTop: '40px' }}>
+                {pricing.clientLogos.map((client, i) => client.logoUrl && (
+                  <Image
+                    key={i}
+                    src={client.logoUrl}
+                    alt={client.name}
+                    width={120}
+                    height={32}
+                    style={{
+                      filter: client.useRedColor
+                        ? 'brightness(0) saturate(100%) invert(29%) sepia(93%) saturate(2080%) hue-rotate(342deg) brightness(99%) contrast(97%)'
+                        : 'brightness(0)',
+                      height: '32px',
+                      width: 'auto',
+                      objectFit: 'contain'
+                    }}
+                  />
+                ))}
+              </div>
+            </>
+          )}
           <div className="grid-line-right"></div>
           <div className="grid-line-left"></div>
         </div>
@@ -774,24 +805,25 @@ export default async function Home() {
                     <Link href="#" className="hero__logo-block invert w-inline-block">
                       <Logo
                         logoUrl={siteSettings?.footerLogoUrl}
-                        siteName={siteSettings?.siteName || 'SiteGuard99'}
+                        siteName={siteSettings?.siteName || 'The WordPress Team'}
                         variant="footer"
+                        color={siteSettings?.footerLogoColor || 'default'}
                       />
                     </Link>
                   </div>
                   <div className="footer__bottom-top">
                     <h1 className="top footer__header">
-                      {footer?.ctaTitle || 'See if SiteGuard99 is the right fit for you'}{' '}
+                      {footer?.ctaTitle || 'See if The WordPress Team is the right fit for you'}{' '}
                       <span className="text-italics">{footer?.ctaTitleItalic || '(it totally is)'}</span>
                     </h1>
                     <p className="hero__left-bottom-p m-b-d foooo">
-                      {footer?.ctaSubtitle || 'Schedule a quick, 15 minute guided tour through SiteGuard99.'}
+                      {footer?.ctaSubtitle || 'Schedule a quick, 15 minute guided tour through The WordPress Team.'}
                     </p>
                   </div>
                 </div>
                 <div className="smiles-desktop">
                   <Image
-                    src={images.footerSmileyFaces}
+                    src="/images/bottom-logos.svg"
                     alt=""
                     width={800}
                     height={400}
@@ -799,74 +831,43 @@ export default async function Home() {
                   />
                   <div className="div-block-26">
                     <div className="head">{footer?.headquarters || 'Headquartered in Phoenix, Arizona'}</div>
-                    <a href={footer?.termsUrl || '#'} target="_blank" className="text-link _3">
+                    <Link href="/terms" className="text-link _3">
                       Terms of service
-                    </a>
-                    <a href={footer?.privacyUrl || '#'} target="_blank" className="text-link _3">
+                    </Link>
+                    <Link href="/privacy" className="text-link _3">
                       Privacy Policy
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
               <div className="book-a-call-wrapper">
                 <div className="div-block-38">
                   <div className="text-block-6">
-                    {footer?.noticeText?.replace('{email}', '') || 'SiteGuard99 is experiencing a high volume of bookings, so slots are limited. For faster service, email'}{' '}
-                    <a href={`mailto:${siteSettings?.contactEmail || 'hello@designjoy.co'}`} className="text-link pink">
-                      {siteSettings?.contactEmail || 'hello@designjoy.co'}
-                    </a>{' '}
-                    for a same-day response.
+                    {footer?.noticeText || 'The WordPress Team is experiencing a high volume of bookings, so slots are limited.'}
                   </div>
                 </div>
                 <div className="book-desktop">
-                  {/* Calendly embed placeholder */}
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '600px',
-                      background: '#1a1a1a',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#fff',
-                    }}
-                  >
-                    <div style={{ textAlign: 'center' }}>
-                      <p style={{ marginBottom: '20px' }}>Book a Call</p>
-                      <a
-                        href={siteSettings?.calendarBookingUrl || 'https://calendly.com/designjoy/15min'}
-                        target="_blank"
-                        className="button w-button"
-                        style={{
-                          background: '#fff',
-                          color: '#000',
-                          padding: '12px 24px',
-                          borderRadius: '8px',
-                          textDecoration: 'none',
-                        }}
-                      >
-                        Schedule a 15-min call
-                      </a>
-                    </div>
-                  </div>
+                  <CalBooker
+                    username="thewordpressteam"
+                    eventSlug="30min"
+                  />
                 </div>
               </div>
               <div className="smiles-mobile">
                 <Image
-                  src={images.footerSmileyFaces}
+                  src="/images/bottom-logos.svg"
                   alt=""
                   width={200}
                   height={50}
                 />
                 <div className="div-block-26">
                   <div className="head">{footer?.headquarters || 'Headquartered in Phoenix, Arizona'}</div>
-                  <a href={footer?.termsUrl || '#'} target="_blank" className="text-link _3">
+                  <Link href="/terms" className="text-link _3">
                     Terms of service
-                  </a>
-                  <a href={footer?.privacyUrl || '#'} target="_blank" className="text-link _3">
+                  </Link>
+                  <Link href="/privacy" className="text-link _3">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

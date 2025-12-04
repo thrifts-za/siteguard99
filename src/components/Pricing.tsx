@@ -59,7 +59,7 @@ export default function Pricing({ pricing, settings, clientLogos }: PricingProps
               <span className="text-sm">Start today</span>
             </div>
             <h3 className="text-4xl md:text-5xl font-bold">Join</h3>
-            <h3 className="text-4xl md:text-5xl font-bold">{settings?.siteName || 'SiteGuard99'}</h3>
+            <h3 className="text-4xl md:text-5xl font-bold">{settings?.siteName || 'The WordPress Team'}</h3>
             {pricing?.memberCardImage && (
               <Image
                 src={urlFor(pricing.memberCardImage).width(400).url()}
@@ -91,13 +91,25 @@ export default function Pricing({ pricing, settings, clientLogos }: PricingProps
               <span className="text-gray-500">{pricing?.pricePeriod || '/month'}</span>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 mb-8">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                  <span>{feature}</span>
-                </div>
-              ))}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+              {/* Left Column */}
+              <div className="flex flex-col gap-3">
+                {features.slice(0, Math.round(features.length / 2)).map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+              {/* Right Column */}
+              <div className="flex flex-col gap-3">
+                {features.slice(Math.round(features.length / 2)).map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <span className="text-xs font-medium text-gray-500 mb-4 block">Included</span>

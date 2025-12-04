@@ -14,16 +14,16 @@ const figtree = Figtree({
 
 // Default metadata
 const defaultMetadata: Metadata = {
-  title: "SiteGuard99 - Design as a Subscription",
+  title: "The WordPress Team - Design as a Subscription",
   description: "The #1 design subscription service for agencies, startups, and entrepreneurs.",
   openGraph: {
-    title: "SiteGuard99 - Design as a Subscription",
+    title: "The WordPress Team - Design as a Subscription",
     description: "The #1 design subscription service for agencies, startups, and entrepreneurs.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SiteGuard99 - Design as a Subscription",
+    title: "The WordPress Team - Design as a Subscription",
     description: "The #1 design subscription service for agencies, startups, and entrepreneurs.",
   },
 };
@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   const seo = settings.seo;
-  const siteName = settings.siteName || "SiteGuard99";
+  const siteName = settings.siteName || "The WordPress Team";
   const title = seo?.metaTitle || `${siteName} - Design as a Subscription`;
   const description = seo?.metaDescription || (defaultMetadata.description as string);
 
