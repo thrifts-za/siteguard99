@@ -1,8 +1,29 @@
+import { Metadata } from 'next'
 import { safeFetch } from '@/sanity/client'
 import { groq } from 'next-sanity'
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/components/Logo'
+
+export const metadata: Metadata = {
+  title: 'WordPress Tips & Insights | The WordPress Team Blog',
+  description: 'Expert advice on WordPress security, performance, and maintenance. Learn how to protect and optimize your WordPress site from industry professionals.',
+  keywords: ['WordPress security', 'WordPress maintenance', 'WordPress performance', 'WordPress tips', 'WordPress blog'],
+  openGraph: {
+    title: 'WordPress Tips & Insights | The WordPress Team Blog',
+    description: 'Expert advice on WordPress security, performance, and maintenance.',
+    type: 'website',
+    url: '/blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WordPress Tips & Insights | The WordPress Team Blog',
+    description: 'Expert advice on WordPress security, performance, and maintenance.',
+  },
+  alternates: {
+    canonical: '/blog',
+  },
+}
 
 const blogListQuery = groq`*[_type == "blogPost"] | order(publishedAt desc) {
   _id,

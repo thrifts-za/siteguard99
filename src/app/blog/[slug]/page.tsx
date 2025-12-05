@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { safeFetch } from '@/sanity/client'
 import { groq } from 'next-sanity'
 import { PortableText } from '@portabletext/react'
@@ -5,6 +6,70 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/components/Logo'
 import { notFound } from 'next/navigation'
+
+// Query for metadata generation
+const blogPostMetaQuery = groq`*[_type == "blogPost" && slug.current == $slug][0] {
+  title,
+  excerpt,
+  "featuredImageUrl": featuredImage.asset->url,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogTitle,
+    ogDescription,
+    "ogImageUrl": ogImage.asset->url
+  }
+}`
+
+interface BlogPostMeta {
+  title: string
+  excerpt?: string
+  featuredImageUrl?: string
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    ogTitle?: string
+    ogDescription?: string
+    ogImageUrl?: string
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = await safeFetch<BlogPostMeta>(blogPostMetaQuery, { slug })
+
+  if (!post) {
+    return {
+      title: 'Article Not Found | The WordPress Team',
+      description: 'The requested article could not be found.',
+    }
+  }
+
+  const title = post.seo?.metaTitle || post.title
+  const description = post.seo?.metaDescription || post.excerpt || `Read ${post.title} on The WordPress Team blog.`
+  const imageUrl = post.seo?.ogImageUrl || post.featuredImageUrl
+
+  return {
+    title: `${title} | The WordPress Team`,
+    description,
+    openGraph: {
+      title: post.seo?.ogTitle || title,
+      description: post.seo?.ogDescription || description,
+      type: 'article',
+      url: `/blog/${slug}`,
+      ...(imageUrl && { images: [{ url: imageUrl, width: 1200, height: 630 }] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.seo?.ogTitle || title,
+      description: post.seo?.ogDescription || description,
+      ...(imageUrl && { images: [imageUrl] }),
+    },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+  }
+}
 
 const blogPostQuery = groq`*[_type == "blogPost" && slug.current == $slug][0] {
   _id,

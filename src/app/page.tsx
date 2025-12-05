@@ -8,6 +8,7 @@ import FaqSection from '@/components/FaqSection'
 import ServicesSlider from '@/components/ServicesSlider'
 import Logo from '@/components/Logo'
 import CalBooker from '@/components/CalBooker'
+import { HomepageStructuredData } from '@/components/StructuredData'
 
 // Default data for fallback when Sanity is not available
 const defaultData: PageData = {
@@ -255,8 +256,21 @@ export default async function Home() {
   const pills2 = howItWorks?.servicePills?.slice(5, 10) || ['Webflow', 'Print design', 'Packaging', 'Ad creative', 'Landing pages']
   const pills3 = howItWorks?.servicePills?.slice(10) || ['Branding', 'Email', 'Display ads', 'Packaging', 'User interface']
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thewordpressteam.co.za'
+
   return (
-    <div>
+    <>
+      {/* Structured Data for SEO */}
+      <HomepageStructuredData
+        siteName={siteSettings?.siteName || 'The WordPress Team'}
+        siteUrl={siteUrl}
+        email={siteSettings?.contactEmail}
+        description="Professional WordPress maintenance service. Security fixes, malware removal, speed optimization, and 24/7 support. Pause or cancel anytime."
+        faqItems={faqItems}
+        servicePrice={pricing?.price}
+      />
+
+      <div>
       {/* Hero Section */}
       <div className="hero">
         <div className="container hero-container">
@@ -561,7 +575,6 @@ export default async function Home() {
                         height={44}
                         className="image-12"
                         style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
-                        unoptimized
                       />
                     ) : (
                       <div className="div-block-15">
@@ -877,5 +890,6 @@ export default async function Home() {
         </div>
       </div>
     </div>
+    </>
   )
 }

@@ -5,12 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronDown, Mail, ArrowRight } from 'lucide-react'
-import { FAQSection, FAQItem, SiteSettings } from '@/lib/types'
+import { FaqSection, FaqItem, SiteSettings } from '@/types/sanity'
 import { urlFor } from '@/sanity/image'
 
 interface FAQProps {
-  section: FAQSection
-  items: FAQItem[]
+  section: FaqSection
+  items: FaqItem[]
   settings: SiteSettings
 }
 

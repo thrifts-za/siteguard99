@@ -1,8 +1,21 @@
+import { Metadata } from 'next'
 import { safeFetch } from '@/sanity/client'
 import { groq } from 'next-sanity'
 import { PortableText } from '@portabletext/react'
 import Link from 'next/link'
 import Logo from '@/components/Logo'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | The WordPress Team',
+  description: 'Learn how The WordPress Team collects, uses, and protects your personal information. Our privacy policy outlines our data practices and your rights.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: '/privacy',
+  },
+}
 
 const privacyQuery = groq`*[_type == "privacyPolicy"][0] {
   title,

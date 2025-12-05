@@ -7,9 +7,16 @@ interface CalBookerProps {
   eventSlug: string
 }
 
+interface CalInstance {
+  (action: string, ...args: unknown[]): void
+  ns?: Record<string, CalInstance>
+  q?: unknown[]
+  loaded?: boolean
+}
+
 declare global {
   interface Window {
-    Cal?: any
+    Cal?: CalInstance
   }
 }
 
@@ -51,21 +58,24 @@ export default function CalBooker({ username, eventSlug }: CalBookerProps) {
 
     window.Cal?.('init', '30min', { origin: 'https://app.cal.com' })
 
-    window.Cal?.ns['30min']?.('inline', {
-      elementOrSelector: '#my-cal-inline',
-      calLink: 'thewordpressteam/30min',
-      config: {
-        layout: 'month_view',
-        theme: 'dark',
-      },
-    })
+    const calNs = window.Cal?.ns
+    if (calNs?.['30min']) {
+      calNs['30min']('inline', {
+        elementOrSelector: '#my-cal-inline',
+        calLink: 'thewordpressteam/30min',
+        config: {
+          layout: 'month_view',
+          theme: 'dark',
+        },
+      })
 
-    window.Cal?.ns['30min']?.('ui', {
-      theme: 'dark',
-      styles: { branding: { brandColor: '#e63946' } },
-      hideEventTypeDetails: true,
-      layout: 'month_view',
-    })
+      calNs['30min']('ui', {
+        theme: 'dark',
+        styles: { branding: { brandColor: '#e63946' } },
+        hideEventTypeDetails: true,
+        layout: 'month_view',
+      })
+    }
   }, [username, eventSlug])
 
   return (
@@ -74,7 +84,7 @@ export default function CalBooker({ username, eventSlug }: CalBookerProps) {
       style={{
         width: '100%',
         height: '100%',
-        minHeight: '600px',
+        minHeight: 'clamp(400px, 80vh, 600px)',
         overflow: 'auto',
       }}
     />

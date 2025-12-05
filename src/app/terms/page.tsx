@@ -1,8 +1,21 @@
+import { Metadata } from 'next'
 import { safeFetch } from '@/sanity/client'
 import { groq } from 'next-sanity'
 import { PortableText } from '@portabletext/react'
 import Link from 'next/link'
 import Logo from '@/components/Logo'
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions | The WordPress Team',
+  description: 'Read the terms and conditions for using The WordPress Team services. Understand your rights, responsibilities, and our service agreement.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: '/terms',
+  },
+}
 
 const termsQuery = groq`*[_type == "termsAndConditions"][0] {
   title,

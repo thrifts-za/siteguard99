@@ -1,16 +1,26 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { safeFetch } from "@/sanity/client";
 import { siteSettingsQuery } from "@/sanity/queries";
 import { SiteSettings } from "@/types/sanity";
+import { sanitizeHTML } from "@/lib/sanitize";
 
 const figtree = Figtree({
   variable: "--font-figtree",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
+
+// Viewport configuration for mobile optimization
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#e63946',
+}
 
 // Default metadata
 const defaultMetadata: Metadata = {
@@ -107,6 +117,21 @@ export default async function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Resource hints for performance */}
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+
+        {/* PWA manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Apple-specific meta tags */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="format-detection" content="telephone=no" />
+
         {/* Favicon links that can't be set via metadata */}
         {settings?.faviconSvgUrl && (
           <link rel="icon" type="image/svg+xml" href={settings.faviconSvgUrl} />
@@ -203,9 +228,9 @@ export default async function RootLayout({
           </Script>
         )}
 
-        {/* Custom Head Scripts */}
+        {/* Custom Head Scripts (sanitized) */}
         {settings?.customHeadScripts && (
-          <div dangerouslySetInnerHTML={{ __html: settings.customHeadScripts }} />
+          <div dangerouslySetInnerHTML={{ __html: sanitizeHTML(settings.customHeadScripts) }} />
         )}
       </head>
       <body className={`${figtree.variable} font-sans antialiased`}>
@@ -221,16 +246,16 @@ export default async function RootLayout({
           </noscript>
         )}
 
-        {/* Custom Body Start Scripts */}
+        {/* Custom Body Start Scripts (sanitized) */}
         {settings?.customBodyStartScripts && (
-          <div dangerouslySetInnerHTML={{ __html: settings.customBodyStartScripts }} />
+          <div dangerouslySetInnerHTML={{ __html: sanitizeHTML(settings.customBodyStartScripts) }} />
         )}
 
         {children}
 
-        {/* Custom Body End Scripts */}
+        {/* Custom Body End Scripts (sanitized) */}
         {settings?.customBodyEndScripts && (
-          <div dangerouslySetInnerHTML={{ __html: settings.customBodyEndScripts }} />
+          <div dangerouslySetInnerHTML={{ __html: sanitizeHTML(settings.customBodyEndScripts) }} />
         )}
       </body>
     </html>

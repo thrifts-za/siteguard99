@@ -1,6 +1,6 @@
 'use client'
 
-import { AboutSection, SiteSettings } from '@/lib/types'
+import { AboutSection, SiteSettings } from '@/types/sanity'
 
 interface AboutProps {
   about: AboutSection
