@@ -1,5 +1,8 @@
 import { Metadata } from 'next'
 import { safeFetch } from '@/sanity/client'
+
+// Force dynamic rendering to always fetch fresh Sanity data
+export const dynamic = 'force-dynamic'
 import { groq } from 'next-sanity'
 import { PortableText } from '@portabletext/react'
 import Link from 'next/link'

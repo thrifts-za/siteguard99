@@ -25,8 +25,10 @@ export async function safeFetch<T>(query: string, params?: Record<string, unknow
     return null
   }
   try {
+    // Use no-store to always fetch fresh data from Sanity
+    // This ensures Vercel deployments get the latest content
     return await client.fetch(query, params || {}, {
-      next: { revalidate: 60 } // Revalidate every 60 seconds for better performance
+      cache: 'no-store'
     })
   } catch {
     // Error fetching from Sanity - falling back to defaults

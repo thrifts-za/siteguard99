@@ -10,6 +10,9 @@ import Logo from '@/components/Logo'
 import CalBooker from '@/components/CalBooker'
 import { HomepageStructuredData } from '@/components/StructuredData'
 
+// Force dynamic rendering to always fetch fresh Sanity data
+export const dynamic = 'force-dynamic'
+
 // Default data for fallback when Sanity is not available
 const defaultData: PageData = {
   siteSettings: {
