@@ -1,17 +1,16 @@
 import { createClient, SanityClient } from 'next-sanity'
 import { apiVersion, dataset, projectId, useCdn } from './env'
 
-// Check if Sanity is properly configured
-export const isSanityConfigured = Boolean(
-  projectId &&
-  projectId !== 'your_project_id' &&
-  /^[a-z0-9-]+$/.test(projectId)
-)
+// Trim projectId in case of whitespace from env vars
+const cleanProjectId = projectId?.trim() || ''
+
+// Check if Sanity is properly configured - simplified check
+export const isSanityConfigured = cleanProjectId.length > 0 && cleanProjectId !== 'your_project_id'
 
 // Create a client only if Sanity is configured, otherwise create a mock client
 export const client: SanityClient | null = isSanityConfigured
   ? createClient({
-      projectId,
+      projectId: cleanProjectId,
       dataset,
       apiVersion,
       useCdn,
