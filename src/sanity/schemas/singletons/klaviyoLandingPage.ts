@@ -13,6 +13,7 @@ export default defineType({
     { name: 'painPoints', title: 'Pain Points' },
     { name: 'solution', title: 'Solution' },
     { name: 'benefits', title: 'Benefits' },
+    { name: 'features', title: 'Features' },
     { name: 'emailExamples', title: 'Email Examples' },
     { name: 'pricing', title: 'Pricing' },
     { name: 'calculator', title: 'Commission Calculator' },
