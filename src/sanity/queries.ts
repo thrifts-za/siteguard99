@@ -1,5 +1,154 @@
 import { groq } from 'next-sanity'
 
+// Klaviyo Landing Page Query
+export const klaviyoPageDataQuery = groq`{
+  "page": *[_type == "klaviyoLandingPage"][0] {
+    seo {
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+      canonicalUrl,
+      ogTitle,
+      ogDescription,
+      "ogImageUrl": ogImage.asset->url,
+      ogType,
+      twitterCard,
+      twitterTitle,
+      twitterDescription,
+      "twitterImageUrl": twitterImage.asset->url,
+      robotsNoIndex,
+      robotsNoFollow
+    },
+    // Section Visibility
+    showPricingHook,
+    showPainPoints,
+    showSolution,
+    showEmailExamples,
+    showBenefits,
+    showTestimonials,
+    showWhoFor,
+    showCalculator,
+    showPricing,
+    showGuarantee,
+    showFaq,
+    // Hero
+    heroEyebrow,
+    heroHeadline,
+    heroHeadlineItalic,
+    heroSubheadline,
+    heroCtaText,
+    heroStats,
+    heroCyclingWords,
+    // Pain Points
+    painSectionTitle,
+    painSectionSubtitle,
+    // Solution
+    solutionEyebrow,
+    solutionTitle,
+    solutionTitleItalic,
+    solutionDescription,
+    "solutionImageUrl": solutionImage.asset->url,
+    // Benefits
+    benefitsSectionEyebrow,
+    benefitsSectionTitle,
+    // Features
+    featuresSectionEyebrow,
+    featuresSectionTitle,
+    featuresSectionTitleItalic,
+    // Email Examples
+    emailExamplesEyebrow,
+    emailExamplesTitle,
+    emailExamplesTitleItalic,
+    // Pricing
+    pricingEyebrow,
+    pricingTitle,
+    pricingTitleItalic,
+    offerName,
+    offerBadge,
+    price,
+    pricePeriod,
+    priceIncludes,
+    guarantee,
+    pricingCtaText,
+    urgencyText,
+    // Calculator
+    calculatorTitle,
+    calculatorSubtitle,
+    commissionRate,
+    // Who This Is For
+    whoForTitle,
+    whoForYesTitle,
+    whoForYesList,
+    whoForNoTitle,
+    whoForNoList,
+    // FAQ
+    faqTitle,
+    faqTitleItalic,
+    // CTA
+    ctaTitle,
+    ctaSubtitle,
+    ctaButtonText,
+    ctaUrgencyText,
+    calUsername,
+    calEventSlug
+  },
+  "painPoints": *[_type == "klaviyoPainPoint"] | order(order asc) {
+    _id,
+    title,
+    description,
+    icon,
+    order
+  },
+  "benefits": *[_type == "klaviyoBenefit"] | order(order asc) {
+    _id,
+    title,
+    description,
+    stat,
+    icon,
+    colorScheme,
+    order
+  },
+  "features": *[_type == "klaviyoFeature"] | order(order asc) {
+    _id,
+    title,
+    description,
+    icon,
+    includes,
+    "imageUrl": image.asset->url,
+    order
+  },
+  "faqItems": *[_type == "klaviyoFaqItem"] | order(order asc) {
+    _id,
+    question,
+    answer,
+    order
+  },
+  "testimonials": *[_type == "testimonial"] | order(order asc) {
+    _id,
+    quote,
+    authorName,
+    authorTitle,
+    "authorImageUrl": authorImage.asset->url,
+    "companyLogoUrl": companyLogo.asset->url
+  },
+  "emailExamples": *[_type == "klaviyoEmailExample"] | order(order asc) {
+    _id,
+    title,
+    description,
+    "imageUrl": image.asset->url,
+    category,
+    brandName,
+    stats,
+    order
+  },
+  "siteSettings": *[_type == "siteSettings"][0] {
+    siteName,
+    contactEmail,
+    "headerLogoUrl": headerLogo.asset->url,
+    headerLogoColor
+  }
+}`
+
 // Fetch site settings with SEO, tracking, and favicons
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0] {
   siteName,

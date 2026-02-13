@@ -13,6 +13,8 @@ import {
   StarIcon,
   CommentIcon,
   TagIcon,
+  RocketIcon,
+  WarningOutlineIcon,
 } from '@sanity/icons'
 
 // Singleton document types
@@ -51,6 +53,45 @@ export const structure = (S: StructureBuilder) =>
                   )
               )
             )
+        ),
+      S.divider(),
+      // Klaviyo Landing Page Section
+      S.listItem()
+        .title('Klaviyo Landing Page')
+        .icon(RocketIcon)
+        .child(
+          S.list()
+            .title('Klaviyo Landing Page')
+            .items([
+              S.listItem()
+                .title('Page Settings')
+                .icon(CogIcon)
+                .child(
+                  S.document()
+                    .schemaType('klaviyoLandingPage')
+                    .documentId('klaviyoLandingPage')
+                ),
+              S.listItem()
+                .title('Pain Points')
+                .icon(WarningOutlineIcon)
+                .child(S.documentTypeList('klaviyoPainPoint').title('Pain Points')),
+              S.listItem()
+                .title('Benefits')
+                .icon(StarIcon)
+                .child(S.documentTypeList('klaviyoBenefit').title('Benefits')),
+              S.listItem()
+                .title('Features')
+                .icon(ComponentIcon)
+                .child(S.documentTypeList('klaviyoFeature').title('Features')),
+              S.listItem()
+                .title('FAQ Items')
+                .icon(HelpCircleIcon)
+                .child(S.documentTypeList('klaviyoFaqItem').title('FAQ Items')),
+              S.listItem()
+                .title('Email Examples')
+                .icon(ImageIcon)
+                .child(S.documentTypeList('klaviyoEmailExample').title('Email Examples')),
+            ])
         ),
       S.divider(),
       // Regular document lists

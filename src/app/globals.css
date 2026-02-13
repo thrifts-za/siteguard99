@@ -1,6 +1,79 @@
 @import "./designjoy.css";
 @import "tailwindcss";
 
+/* Klaviyo Landing Page Variables */
+:root {
+  --klaviyo-purple: #6f42c1;
+  --klaviyo-purple-dark: #5a32a3;
+  --klaviyo-purple-light: #8b5cf6;
+  --klaviyo-dark: #1a1a2e;
+  --klaviyo-darker: #0f0f1a;
+  --klaviyo-accent: #10b981;
+  --klaviyo-accent-light: #34d399;
+  --klaviyo-gradient: linear-gradient(135deg, #6f42c1 0%, #8b5cf6 100%);
+}
+
+/* Klaviyo Landing Page Styles */
+.klaviyo-landing,
+.klaviyo-landing * {
+  font-family: var(--font-figtree), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Klaviyo Hero gradient text */
+.klaviyo-gradient-text {
+  background: linear-gradient(135deg, var(--klaviyo-purple-light) 0%, var(--klaviyo-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Klaviyo button hover glow effect */
+.klaviyo-btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.klaviyo-btn-glow::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 60%
+  );
+  animation: klaviyoSweepGlow 3s infinite;
+}
+
+@keyframes klaviyoSweepGlow {
+  0% {
+    top: -100%;
+    left: -100%;
+  }
+  50% {
+    top: 100%;
+    left: 100%;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+  }
+}
+
+/* Klaviyo card hover lift */
+.klaviyo-card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.klaviyo-card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(111, 66, 193, 0.15);
+}
+
 /* Increase font weight globally */
 body {
   font-weight: 600;

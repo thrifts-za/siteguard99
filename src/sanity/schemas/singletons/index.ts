@@ -10,6 +10,7 @@ import recentWorkSection from './recentWorkSection'
 import siteGraphics from './siteGraphics'
 import termsAndConditions from './termsAndConditions'
 import privacyPolicy from './privacyPolicy'
+import klaviyoLandingPage from './klaviyoLandingPage'
 
 export const singletonTypes = [
   siteSettings,
@@ -24,6 +25,7 @@ export const singletonTypes = [
   footerSection,
   termsAndConditions,
   privacyPolicy,
+  klaviyoLandingPage,
 ]
 
 export const singletonActions = new Set(['publish', 'discardChanges', 'restore'])
