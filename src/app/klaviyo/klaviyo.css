@@ -293,13 +293,13 @@
     transform: translateY(0) translateZ(0);
   }
   100% {
-    transform: translateY(-50%) translateZ(0);
+    transform: translateY(-33.333%) translateZ(0);
   }
 }
 
 @keyframes klaviyoSlideDown {
   0% {
-    transform: translateY(-50%) translateZ(0);
+    transform: translateY(-33.333%) translateZ(0);
   }
   100% {
     transform: translateY(0) translateZ(0);
@@ -718,7 +718,7 @@
 /* ================================================
    URGENCY BAR
 ================================================ */
-.klaviyo-urgency-bar {
+.klaviyo-top-bar {
   background: linear-gradient(90deg, var(--klaviyo-primary-dark), var(--klaviyo-primary), var(--klaviyo-primary-dark));
   background-size: 200% auto;
   animation: klaviyoGradientFlow 3s ease infinite;
@@ -732,7 +732,7 @@
   z-index: 50;
 }
 
-.klaviyo-urgency-bar span {
+.klaviyo-top-bar span {
   background: rgba(0, 0, 0, 0.2);
   padding: 4px 12px;
   border-radius: 4px;
@@ -1448,7 +1448,7 @@
     left: 20px;
   }
 
-  .klaviyo-urgency-bar {
+  .klaviyo-top-bar {
     font-size: 0.85rem;
     padding: 10px 12px;
   }
@@ -1586,11 +1586,12 @@
 ================================================ */
 .klaviyo-calculator {
   background: var(--klaviyo-card);
-  border: 1px solid var(--klaviyo-border);
+  border: 2px solid var(--klaviyo-primary);
   border-radius: 20px;
   padding: 40px;
   max-width: 500px;
   margin: 0 auto;
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.15);
 }
 
 .klaviyo-calculator-input-group {

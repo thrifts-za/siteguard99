@@ -32,6 +32,8 @@ export const klaviyoPageDataQuery = groq`{
     showGuarantee,
     showFaq,
     // Hero
+    showTopBar,
+    topBarText,
     heroEyebrow,
     heroHeadline,
     heroHeadlineItalic,

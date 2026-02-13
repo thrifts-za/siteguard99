@@ -37,6 +37,8 @@ export interface KlaviyoPage {
   showGuarantee?: boolean
   showFaq?: boolean
   // Hero
+  showTopBar?: boolean
+  topBarText?: string
   heroEyebrow?: string
   heroHeadline?: string
   heroHeadlineItalic?: string

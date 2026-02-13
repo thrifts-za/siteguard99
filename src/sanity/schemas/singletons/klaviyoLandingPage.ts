@@ -110,6 +110,22 @@ export default defineType({
 
     // Hero Section
     defineField({
+      name: 'showTopBar',
+      title: 'Show Top Bar',
+      type: 'boolean',
+      group: 'hero',
+      initialValue: true,
+      description: 'Toggle the top announcement bar on/off',
+    }),
+    defineField({
+      name: 'topBarText',
+      title: 'Top Bar Text',
+      type: 'string',
+      group: 'hero',
+      initialValue: 'Simple Pricing • 100% Commission Based • Pay Only for Previous Month\'s Revenue',
+      description: 'The tagline shown in the top announcement bar',
+    }),
+    defineField({
       name: 'heroEyebrow',
       title: 'Hero Eyebrow',
       type: 'string',

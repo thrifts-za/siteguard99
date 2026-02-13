@@ -50,7 +50,6 @@ const emailImages = [
 export default function KlaviyoLanding({ data }: Props) {
   const { page, faqItems = [] } = data
   const [isVisible, setIsVisible] = useState(false)
-  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 47, seconds: 32 })
   const [openFaq, setOpenFaq] = useState<string | null>(null)
   const [displayText, setDisplayText] = useState('')
   const [isTyping, setIsTyping] = useState(true)
@@ -93,17 +92,6 @@ export default function KlaviyoLanding({ data }: Props) {
 
   useEffect(() => {
     setIsVisible(true)
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        let { hours, minutes, seconds } = prev
-        seconds--
-        if (seconds < 0) { seconds = 59; minutes-- }
-        if (minutes < 0) { minutes = 59; hours-- }
-        if (hours < 0) { hours = 23; minutes = 59; seconds = 59 }
-        return { hours, minutes, seconds }
-      })
-    }, 1000)
-    return () => clearInterval(timer)
   }, [])
 
   // Typewriter effect
@@ -157,13 +145,12 @@ export default function KlaviyoLanding({ data }: Props) {
 
   return (
     <div className="klaviyo-page">
-      {/* URGENCY BAR */}
-      <div className="klaviyo-urgency-bar">
-        <span>{page?.urgencyText || 'Only 3 spots left this month'}</span>
-        <span className="klaviyo-mono">{String(timeLeft.hours).padStart(2, '0')}h</span>
-        <span className="klaviyo-mono">{String(timeLeft.minutes).padStart(2, '0')}m</span>
-        <span className="klaviyo-mono">{String(timeLeft.seconds).padStart(2, '0')}s</span>
-      </div>
+      {/* TOP BAR */}
+      {page?.showTopBar !== false && (
+        <div className="klaviyo-top-bar">
+          <span>{page?.topBarText || 'Simple Pricing • 100% Commission Based • Pay Only for Previous Month\'s Revenue'}</span>
+        </div>
+      )}
 
       {/* HERO */}
       <section className="klaviyo-hero">
@@ -321,7 +308,7 @@ export default function KlaviyoLanding({ data }: Props) {
               <div className="klaviyo-bidi-slider">
                 {/* Column 1 - Up */}
                 <div className="klaviyo-slider-column klaviyo-slider-column-up">
-                  {[...col1Images, ...col1Images].map((img, i) => (
+                  {[...col1Images, ...col1Images, ...col1Images].map((img, i) => (
                     <div key={`col1-${i}`} className="klaviyo-slider-image">
                       <img src={img} alt={`Email example ${i + 1}`} loading="lazy" />
                     </div>
@@ -329,7 +316,7 @@ export default function KlaviyoLanding({ data }: Props) {
                 </div>
                 {/* Column 2 - Down */}
                 <div className="klaviyo-slider-column klaviyo-slider-column-down">
-                  {[...col2Images, ...col2Images].map((img, i) => (
+                  {[...col2Images, ...col2Images, ...col2Images].map((img, i) => (
                     <div key={`col2-${i}`} className="klaviyo-slider-image">
                       <img src={img} alt={`Email example ${i + 1}`} loading="lazy" />
                     </div>
@@ -337,7 +324,7 @@ export default function KlaviyoLanding({ data }: Props) {
                 </div>
                 {/* Column 3 - Up */}
                 <div className="klaviyo-slider-column klaviyo-slider-column-up">
-                  {[...col3Images, ...col3Images].map((img, i) => (
+                  {[...col3Images, ...col3Images, ...col3Images].map((img, i) => (
                     <div key={`col3-${i}`} className="klaviyo-slider-image">
                       <img src={img} alt={`Email example ${i + 1}`} loading="lazy" />
                     </div>
@@ -345,7 +332,7 @@ export default function KlaviyoLanding({ data }: Props) {
                 </div>
                 {/* Column 4 - Down */}
                 <div className="klaviyo-slider-column klaviyo-slider-column-down">
-                  {[...col4Images, ...col4Images].map((img, i) => (
+                  {[...col4Images, ...col4Images, ...col4Images].map((img, i) => (
                     <div key={`col4-${i}`} className="klaviyo-slider-image">
                       <img src={img} alt={`Email example ${i + 1}`} loading="lazy" />
                     </div>
